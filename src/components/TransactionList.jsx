@@ -22,8 +22,8 @@ function TransactionList({transactions, onDeleteTransaction}) {
                                     </div>
                                 )}
                             </div>
-                            <span>{item.type === "income" ? "+" : "-"}{item.amount}</span>
-                            <button onClick={() => onDeleteTransaction(item.id)}>Delete</button>
+                            <span className={item.type === "income" ? "text-green-400" : "text-red-400"}>{item.type === "income" ? "+" : "-"}Rp{item.amount}</span>
+                            <button onClick={() => onDeleteTransaction(item.id)} className="cursor-pointer text-red-400">Delete</button>
                         </li>
                     ))}
                 </ul>
