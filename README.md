@@ -1,6 +1,6 @@
-# Expense Tracker
+# Finance Tracker
 
-A sleek and lightweight expense tracker web application designed to help users monitor their daily financial transactions. This project focuses on DOM manipulation, local storage management, and clean user interface styling.
+A sleek and lightweight finance tracker web application designed to help users monitor their daily financial transactions. This project focuses on DOM manipulation, local storage management, and clean user interface styling.
 
 ## Features
 * **Transaction Form:** Easily input new income or expense item with category and descriptions.
