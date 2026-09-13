@@ -13,7 +13,7 @@ function TransactionList({transactions, onDeleteTransaction}) {
                 <ul className="flex flex-col gap-y-2">
                     {transactions.map((item) => (
                         <li key={item.id} className="flex justify-between items-center px-4 py-1 bg-slate-50 border border-slate-200 rounded-xl">
-                            <div className="flex flex-col">
+                            <div cnlassName="flex flex-col">
                                 <h4 className="font-semibold ">{item.title}</h4>
                                 {item.desc && (
                                     <div className="flex items-center gap-1">
