@@ -1,28 +1,13 @@
 import ExpenseSummary from "../components/ExpenseSummary.jsx";
 import ExpenseList from "../components/ExpenseList.jsx";
-import { useState } from "react"
 
 
-const Home = () => {
-       //  lazy initialization dari localStorage
-    const[expenses, setExpenses] = useState([
-        {id: 1, name: "Gaji", category:"Other", type:"income", amount: 100000, description: "Gaji bulanan"},
-        {id: 2, name: "Bensin", category:"Transportation", type:"expense", amount: 20000, description: "Isi full tangki"},
-        {id: 3, name: "Bensin", category:"Transportation", type:"expense", amount: 20000, description: "Isi full tangki"},
-    ]);
+const Home = ({expenses}) => {
 
     // Ini otomatis menyinkronkan data yang berubah ke localStorage
     // useEffect(() => {
     //     localStorage.setItem("user-expenses", JSON.stringify(expenses))
     // }, [expenses]
-
-    const addExpense = (newExpenses) => {
-        setExpenses((prev) => [...prev, newExpenses]);
-    };
-
-    const deleteExpense = (id) => {
-        setExpenses((prev) => prev.filter((item) => item.id !== id))
-    }
 
     // const editExpense = (id, updatedExpense) => {
     //     setExpenses((prev) => prev.map((item) => updatedExpense.id === id ? {...item, ...updatedExpense} : item))
