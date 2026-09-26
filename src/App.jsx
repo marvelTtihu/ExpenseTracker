@@ -1,67 +1,34 @@
-import "./App.css"
-import Header  from "./components/Header.jsx";
-import Balance from "./components/Balance.jsx";
-import Income from "./components/Income.jsx";
-import Expense from "./components/Expense.jsx";
-import TransactionForm from "./components/TransactionForm.jsx";
-import TransactionList from "./components/TransactionList.jsx";
-import { useState, useEffect } from "react"
+import { Route, Routes } from "react-router";
+import { useState } from "react";
+import Home from "./pages/Home"
+import Sidebar from "./components/Sidebar";
 
-function App() {
-    //  lazy initialization dari localStorage
-    const[transactions, setTransactions] = useState(() => {
-        const savedData = localStorage.getItem("user-transactions");
-        return savedData ? JSON.parse(savedData) : [];
-    });
+const App = () => {
+const [expenses, setExpenses] = useState([
+        {id: 1, name: "Gaji", category:"Other", type:"income", amount: 100000, description: "Gaji bulanan"},
+        {id: 2, name: "Bensin", category:"Transportation", type:"expense", amount: 20000, description: "Isi full tangki"},
+        {id: 3, name: "Bensin", category:"Transportation", type:"expense", amount: 20000, description: "Isi full tangki"}
+    ]);
 
-    // Ini otomatis menyinkronkan data yang berubah ke localStorage
-    useEffect(() => {
-        localStorage.setItem("user-transactions", JSON.stringify(transactions))
-    }, [transactions])
-
-    // Logic untuk transaction yang baru
-    const addTransactions = (newTransactions) => {
-        setTransactions((prev) => [...prev, newTransactions]);
-    };
-
-    // Logic untuk menghapus transactions
-    const deleteTransaction = (id) => {
-        setTransactions((prev) => prev.filter((item) => item.id !== id))
+    const addExpense = (newExpense) => {
+        setExpenses((prev) => [...prev, newExpense]);
     }
 
-   return(  
-    <div className="min-h-dvh bg-slate-50">
-        <div className="max-w-5xl mx-auto px-4 py-8 md:px-8 lg:px-0">
-            <Header />
-            <div className="mt-10 space-y-8">
+    const deleteExpense = (id) => {
+        setExpenses((prev) => prev.filter((item) => item.id !== id));
+    }
 
-                {/* Balance, Income, Expense */}
-                <div className="grid md:grid-cols-3 gap-4">
-                    <div className="md:col-span-1">
-                        <Balance transactions={transactions} />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4 md:col-span-2">
-                        <Income transactions={transactions} />
-                        <Expense transactions={transactions} />
-                    </div>
-                </div>
+    return(
+        <div className="flex">
+                <Sidebar />
 
-                {/* Form and List */}
-                <div className="grid md:grid-cols-2 gap-4">
-                    <div className="order-2 md:order-1">
-                        <TransactionForm onAddTransactions={addTransactions} />
-                    </div>
-                    <div className="order-1 md:order-2">
-                        <TransactionList
-                            transactions={transactions}
-                            onDeleteTransaction={deleteTransaction}
-                        />
-                    </div>
-                </div>
-            </div>  
+            <main className="flex-1">
+                <Routes>
+                    <Route path="/" element={<Home expenses={expenses} onDeleteExpense ={deleteExpense}/>}/>
+                </Routes>
+            </main>
         </div>
-    </div>
-   );
+    );
 }
 
 export default App;

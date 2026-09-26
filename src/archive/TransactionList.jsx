@@ -1,6 +1,6 @@
 import { MdDescription } from "react-icons/md";
 
-function TransactionList({transactions, onDeleteTransaction}) {
+const TransactionList = ({transactions, onDeleteTransaction}) => {
         return(
         <div className="bg-white p-6 rounded-2xl shadow-md h-full overflow-y-auto">
             <h3 className="text-md font-bold text-slate-700">All transactions</h3>

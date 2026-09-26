@@ -1,4 +1,5 @@
-function Income({ transactions }) {
+const Income = ({ transactions }) => {
+
   const totalIncome = transactions
     .filter((item) => item.type === "income")
     .reduce((acc, item) => acc + item.amount, 0);

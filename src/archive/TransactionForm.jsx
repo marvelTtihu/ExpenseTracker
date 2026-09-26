@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function TransactionForm({ onAddTransactions }) {
+const TransactionForm = ({ onAddTransactions }) => {
     const[title, setTitle] = useState("");
     const[type, setType] = useState("income");
     const[amount, setAmount] = useState("");

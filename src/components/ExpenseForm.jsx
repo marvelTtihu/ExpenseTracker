@@ -6,7 +6,7 @@ const ExpenseForm = () => {
         const[type, setType] = useState("income");
         const[amount, setAmount] = useState("");
         const[desc, setDesc] = useState("");
-
+        
     return(
         <></>
     );
