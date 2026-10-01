@@ -1,5 +1,4 @@
 import { Bar, BarChart, CartesianGrid, Tooltip, YAxis, XAxis, ResponsiveContainer } from "recharts";
-import ExpenseList from "../components/ExpenseList";
 import { useMemo } from "react";
 
 const Analytics = ({ expenses }) => {
