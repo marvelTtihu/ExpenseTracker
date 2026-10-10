@@ -1,17 +1,11 @@
 import ExpenseSummary from "../components/ExpenseSummary.jsx";
 import ExpenseList from "../components/ExpenseList.jsx";
+import { useTransaction } from "../hooks/useTransaction.jsx";
 
 
-const Home = ({expenses}) => {
 
-    // Ini otomatis menyinkronkan data yang berubah ke localStorage
-    // useEffect(() => {
-    //     localStorage.setItem("user-expenses", JSON.stringify(expenses))
-    // }, [expenses]
-
-    // const editExpense = (id, updatedExpense) => {
-    //     setExpenses((prev) => prev.map((item) => updatedExpense.id === id ? {...item, ...updatedExpense} : item))
-    // }
+const Dashboard = () => {
+    const { expenses } = useTransaction();
 
 return(  
     <section className="min-h-dvh bg-slate-100">
@@ -20,10 +14,10 @@ return(
 
             <section className="mt-10 space-y-8">
                 {/* Expense Summary */}
-                <article className="bg-white p-4">
+                <article className="bg-white p-4 mx-auto max-w-6xl">
                     <article className="flex justify-between items-center px-4">
                         <h3>Summary</h3>
-                        <button>+ Add</button>
+                        <button className="cursor-pointer">+ Add</button>
                     </article>
                     <ExpenseSummary expenses={expenses} />
                 </article>
@@ -39,4 +33,4 @@ return(
    );
 }
 
-export default Home;
+export default Dashboard;

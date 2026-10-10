@@ -3,6 +3,7 @@ import { MdDashboard } from "react-icons/md";
 import { FaTable } from "react-icons/fa";
 import { GrFormEdit } from "react-icons/gr";
 import { Link } from "react-router";
+import { FaMoneyCheck } from "react-icons/fa6";
 
 const Sidebar = () => {
     return(
@@ -16,8 +17,9 @@ const Sidebar = () => {
 
             <nav className="flex flex-col px-4 py-2 my-1">
                 <Link to="/" preventScrollReset><MdDashboard />Dashboard</Link>
-                <Link to="/overview" preventScrollReset><FaTable />Overview</Link>
-                <Link to="/form" preventScrollReset><GrFormEdit />Form</Link>
+                <Link to="/expense" preventScrollReset><GrFormEdit />Expense</Link>
+                <Link to="/budget" preventScrollReset><FaMoneyCheck />Budget</Link>
+                <Link to="/analytics" preventScrollReset><FaTable />Analytics</Link>
             </nav>
         </aside>
     );

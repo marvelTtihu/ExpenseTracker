@@ -1,26 +1,32 @@
-const ExpenseSummary = ({ expenses }) => {
-  const totalIncome = expenses
-    .filter((item) => item.type === "income")
-    .reduce((acc, item) => acc + item.amount, 0);
-  
-  const totalExpense = expenses
-    .filter((item) => item.type === "expense")
-    .reduce((acc, item) => acc + item.amount, 0);
+import { useTransaction } from "../hooks/useTransaction";
 
-  const totalBalance = totalIncome - totalExpense;
+const ExpenseSummary = () => {
+  const {expenses} = useTransaction();
+
+  const totalExpense = expenses.reduce((acc, item) => acc + item.amount, 0);
+
+  const totalTransactions = expenses.length;
 
   return (
     <section>
-      <article className="grid grid-cols-1 md:grid-cols-2">
+      <article className="mx-auto grid grid-cols-1 md:grid-cols-3 px-4 py-2">
         <article>
-          <h2>Your balance</h2>
-          <span>{totalBalance}</span>
+          <h2>Total Expense</h2>
+          <span>Rp{totalExpense}</span>
+          <span className="block">This month</span>
         </article>
 
         <article>
-          <h2>Expense</h2>
-          <span>{totalExpense}</span>
+          <h2>Transactions </h2>
+          <span>{totalTransactions}</span>
+          <span className="block">This month</span>
         </article>
+
+        <article>
+          <h2>Total Budget</h2>
+          <span>Rp0</span>
+        </article>
+
       </article>
     </section>
   );
