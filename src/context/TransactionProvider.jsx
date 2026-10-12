@@ -15,7 +15,7 @@ export const TransactionProvider = ({children}) => {
     }
 
     const editExpense = (id, updatedExpense) => {
-        setExpenses((prev) => prev.map((item) => updatedExpense.id === id ? {...item, ...updatedExpense} : item))
+        setExpenses((prev) => prev.map((item) => item.id === id ? {...item, ...updatedExpense} : item))
     }
 
     const deleteExpense = (id) => {

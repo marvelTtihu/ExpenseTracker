@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import Analytics from "./pages/Analytics";
 import Expense from "./pages/Expense";
+import Budget from "./pages/Budget"
 
 const App = () => {
 
@@ -17,6 +18,7 @@ const App = () => {
                     <Route path="/" element={<Dashboard />}/>
                     <Route path="/analytics" element={<Analytics /> } />
                     <Route path="/expense" element={<Expense />}/>
+                    <Route path="/budget" element={<Budget />} />
                 </Routes>
             </main>
         </div>
