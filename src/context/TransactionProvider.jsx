@@ -1,14 +1,50 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { TransactionContext } from "./TransactionContext"
 
 export const TransactionProvider = ({children}) => {
-    const [expenses, setExpenses] = useState([
-        {id: 1, name: "Gaji", category:"Salary", type:"income", amount: 100000, description: "Gaji bulanan"},
-        {id: 2, name: "Bensin", category:"Transportation", type:"expense", amount: 20000, description: "Isi full tangki"},
-        {id: 3, name: "Air Minum", category:"Food and Drinks", type:"expense", amount: 5000, description: "Haus"},
-        {id: 4, name:"Mie gacoan", category:"Food and Drinks", type:"expense", amount: 12000, description: "Kenyang"},
-        {id: 5, name:"Ayam goreng", category:"Food and Drinks", type:"expense", amount: 15000, description: "Kenyang"},
-    ])
+    const [expenses, setExpenses] = useState(() => {
+        const savedExpense = localStorage.getItem("expenses");
+        return savedExpense ? JSON.parse(savedExpense) : [
+        {id: 1, name: "Example", category: "Food & Drinks", amount: 10000, desc:"Hello there!" },
+    ]
+    })
+
+    const [budgets, setBudgets] = useState(() => {
+        const savedBudgets = localStorage.getItem("budgets");
+        return savedBudgets ? JSON.parse(savedBudgets) : [];
+    })
+
+    useEffect(() => {
+        localStorage.setItem("expenses", JSON.stringify(expenses));
+        localStorage.setItem("budgets", JSON.stringify(budgets));
+    }, [expenses, budgets])
+    
+    const CATEGORIES = [
+        "Food & Drinks",
+        "Groceries",
+        "Transportation",
+        "Housing",
+        "Health",
+        "Shopping",
+        "Entertainment",
+        "Education",
+        "Travel",
+        "Bills & Subscription",
+        "Gift & Donations",
+        "Other"
+    ];
+
+    const setBudget = (category, limit) => {
+        setBudgets((prev) => {const exists = prev.some((budget) => budget.category === category);
+        return exists
+        ? prev.map((budget) => budget.category === category ? {...budget, limit} : budget)
+        : [...prev, {id: Date.now(), category, limit}];
+        });
+    }
+
+    const deleteBudget = (id) => {
+        setBudgets((prev) => prev.filter((b) => b.id !== id));
+    }
 
     const addExpense = (newExpense) => {
         setExpenses((prev) => [...prev, newExpense]);
@@ -23,7 +59,7 @@ export const TransactionProvider = ({children}) => {
     }
 
     return(
-        <TransactionContext value={{expenses, addExpense, editExpense, deleteExpense}}>
+        <TransactionContext value={{expenses, addExpense, editExpense, deleteExpense, budgets, setBudget, deleteBudget, CATEGORIES}}>
             {children}
         </TransactionContext>
     )
