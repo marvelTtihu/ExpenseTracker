@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useTransaction } from "../hooks/useTransaction";
 
 const ExpenseForm = () => {
+    const {addExpense, CATEGORIES} = useTransaction();
+    
     const[name, setName] = useState("");
-    const[category, setCategory] = useState("");
+    const[category, setCategory] = useState(CATEGORIES[0]);
     const[amount, setAmount] = useState("");
     const[desc, setDesc] = useState("");
-    const {addExpense} = useTransaction();
+
 
     const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +22,7 @@ const ExpenseForm = () => {
     })
 
         setName("");
-        setCategory("");
+        setCategory(CATEGORIES[0]);
         setAmount("");
         setDesc("");
     }
@@ -47,11 +49,9 @@ const ExpenseForm = () => {
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     required>
-                        <option>Food & Drinks</option>
-                        <option>Groceries</option>
-                        <option>Transportation</option>
-                        <option>Shopping</option>
-                        <option>Entertainment</option>
+                        {CATEGORIES.map((item) => (
+                            <option key={item} value={item}>{item}</option>
+                        ))}
                     </select>
 
                     <label>Amount*</label>
