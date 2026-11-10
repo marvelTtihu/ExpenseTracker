@@ -41,18 +41,18 @@ const ExpenseForm = () => {
         + Add expense
       </button>
       {isOpen && (
-        <div
+        <article
           onClick={closeForm}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
         >
-          <div
+          <article
             role="dialog"
             aria-modal="true"
             aria-labelledby="expense-title"
             onClick={(e) => e.stopPropagation()}
             className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl"
           >
-            <div className="mb-6 flex items-center justify-between">
+            <article className="mb-6 flex items-center justify-between">
               <h3
                 id="expense-title"
                 className="text-xl font-bold text-slate-800"
@@ -68,11 +68,11 @@ const ExpenseForm = () => {
               >
                 &times;
               </button>
-            </div>
+            </article>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name */}
-              <div>
+              <article>
                 <label
                   htmlFor="name"
                   className="mb-1 block text-sm font-medium"
@@ -89,10 +89,10 @@ const ExpenseForm = () => {
                   placeholder="Expense name..."
                   className="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
-              </div>
+              </article>
 
               {/* Category */}
-              <div>
+              <article>
                 <label
                   htmlFor="category"
                   className="mb-1 block text-sm font-medium"
@@ -113,10 +113,10 @@ const ExpenseForm = () => {
                     </option>
                   ))}
                 </select>
-              </div>
+              </article>
 
               {/* Amount */}
-              <div>
+              <article>
                 <label
                   htmlFor="amount"
                   className="mb-1 block text-sm font-medium"
@@ -135,10 +135,10 @@ const ExpenseForm = () => {
                   placeholder="How much?"
                   className="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none focus:border-blue-500"
                 />
-              </div>
+              </article>
 
               {/* Description */}
-              <div>
+              <article>
                 <label
                   htmlFor="description"
                   className="mb-1 block text-sm font-medium"
@@ -154,7 +154,7 @@ const ExpenseForm = () => {
                   rows={3}
                   className="w-full resize-y rounded-lg border border-slate-300 px-3 py-2 outline-none focus:border-blue-500"
                 />
-              </div>
+              </article>
 
               <article className="flex justify-end gap-3 pt-2">
                 <button
@@ -173,8 +173,8 @@ const ExpenseForm = () => {
                 </button>
               </article>
             </form>
-          </div>
-        </div>
+          </article>
+        </article>
       )}
     </>
   );
