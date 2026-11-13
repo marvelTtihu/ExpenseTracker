@@ -8,7 +8,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { formatRupiah } from "../utils/format";
-// n
 import { useTransaction } from "../hooks/useTransaction";
 
 const ExpenseBarChart = () => {
