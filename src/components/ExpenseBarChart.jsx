@@ -8,28 +8,42 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { formatRupiah } from "../utils/format";
-import { useMemo } from "react";
+// import { useMemo } from "react";
 import { useTransaction } from "../hooks/useTransaction";
 
 const ExpenseBarChart = () => {
   const { expenses } = useTransaction();
 
-  const data = useMemo(() => {
-    const grouped = expenses.reduce((acc, current) => {
-      const existing = acc.find((item) => item.category === current.category);
+  const categoryTotals = expenses.reduce((acc, expense) => {
+    const category = expense.category;
+    const amount = expense.amount;
+    acc[category] = (acc[category] || 0) + amount;
 
-      if (existing) {
-        existing.amount += Number(current.amount);
-      } else {
-        acc.push({
-          category: current.category,
-          amount: Number(current.amount),
-        });
-      }
-      return acc;
-    }, []);
-    return grouped;
-  }, [expenses]);
+    return acc;
+  }, {})
+
+  const data = Object.entries(categoryTotals).map(([category, amount]) => ({
+    category,
+    amount
+  }))
+
+
+  // const data = useMemo(() => {
+  //   const grouped = expenses.reduce((acc, current) => {
+  //     const existing = acc.find((item) => item.category === current.category);
+
+  //     if (existing) {
+  //       existing.amount += Number(current.amount);
+  //     } else {
+  //       acc.push({
+  //         category: current.category,
+  //         amount: Number(current.amount),
+  //       });
+  //     }
+  //     return acc;
+  //   }, []);
+  //   return grouped;
+  // }, [expenses]);
 
   return (
     <>
