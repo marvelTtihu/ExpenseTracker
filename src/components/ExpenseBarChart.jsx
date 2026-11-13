@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { formatRupiah } from "../utils/format";
-// import { useMemo } from "react";
+// n
 import { useTransaction } from "../hooks/useTransaction";
 
 const ExpenseBarChart = () => {
@@ -26,24 +26,6 @@ const ExpenseBarChart = () => {
     category,
     amount
   }))
-
-
-  // const data = useMemo(() => {
-  //   const grouped = expenses.reduce((acc, current) => {
-  //     const existing = acc.find((item) => item.category === current.category);
-
-  //     if (existing) {
-  //       existing.amount += Number(current.amount);
-  //     } else {
-  //       acc.push({
-  //         category: current.category,
-  //         amount: Number(current.amount),
-  //       });
-  //     }
-  //     return acc;
-  //   }, []);
-  //   return grouped;
-  // }, [expenses]);
 
   return (
     <>
