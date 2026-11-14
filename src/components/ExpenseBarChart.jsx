@@ -11,17 +11,9 @@ import { formatRupiah } from "../utils/format";
 import { useTransaction } from "../hooks/useTransaction";
 
 const ExpenseBarChart = () => {
-  const { expenses } = useTransaction();
+  const { categoryTotals } = useTransaction();
 
-  const categoryTotals = expenses.reduce((acc, expense) => {
-    const category = expense.category;
-    const amount = expense.amount;
-    acc[category] = (acc[category] || 0) + amount;
-
-    return acc;
-  }, {})
-
-  const data = Object.entries(categoryTotals).map(([category, amount]) => ({
+  const data = Object.entries(categoryTotals || {}).map(([category, amount]) => ({
     category,
     amount
   }))
