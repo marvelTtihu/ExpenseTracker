@@ -10,7 +10,7 @@ import {
 import { formatRupiah } from "../utils/format";
 import { useTransaction } from "../hooks/useTransaction";
 
-const ExpenseBarChart = () => {
+export default function ExpenseBarChart() {
   const { categoryTotals } = useTransaction();
 
   const data = Object.entries(categoryTotals || {}).map(([category, amount]) => ({
@@ -41,4 +41,3 @@ const ExpenseBarChart = () => {
   );
 };
 
-export default ExpenseBarChart;
