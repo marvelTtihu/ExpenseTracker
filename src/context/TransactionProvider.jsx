@@ -42,6 +42,12 @@ export const TransactionProvider = ({children}) => {
         });
     }
 
+    const getSpent = (category) => {
+        return expenses
+            .filter((expense) => expense.category === category)
+            .reduce((total, expense) => total + Number(expense.amount), 0);
+    };
+
     const deleteBudget = (id) => {
         setBudgets((prev) => prev.filter((b) => b.id !== id));
     }
@@ -58,8 +64,17 @@ export const TransactionProvider = ({children}) => {
         setExpenses((prev) => prev.filter((item) => item.id !== id));
     }
 
+    const categoryTotals = expenses.reduce((acc, expense) => {
+        const category = expense.category;
+        const amount = expense.amount;
+        acc[category] = (acc[category] || 0) + amount;
+
+        return acc;
+    }, {})
+
+
     return(
-        <TransactionContext value={{expenses, addExpense, editExpense, deleteExpense, budgets, setBudget, deleteBudget, CATEGORIES}}>
+        <TransactionContext value={{expenses, addExpense, editExpense, deleteExpense, budgets, setBudget, deleteBudget, getSpent, categoryTotals, CATEGORIES}}>
             {children}
         </TransactionContext>
     )
